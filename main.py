@@ -9,6 +9,7 @@ from speckle_automate import (
     AutomationContext,
     execute_automate_function,
 )
+from specklepy.objects import Base
 
 from flatten import flatten_base
 
