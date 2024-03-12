@@ -31,6 +31,18 @@ class FunctionInputs(AutomateBase):
         ),
     )
 
+import json
+
+def serialize_base(base: Base) -> str:
+    """Serializes a Base object to a JSON string."""
+    # Assuming there is a method to convert base objects to dictionaries
+    base_dict = base.to_dict() if hasattr(base, 'to_dict') else {}
+
+    # Use json.dumps() to convert the dictionary to a JSON string
+    # Set `default=str` to handle any objects that are not directly serializable by default
+    return json.dumps(base_dict, indent=4, default=str)
+
+
 
 def automate_function(
     automate_context: AutomationContext,
@@ -47,6 +59,10 @@ def automate_function(
     """
     # the context provides a conveniet way, to receive the triggering version
     version_root_object = automate_context.receive_version()
+
+    # At the point in your code where you want to log the initial base object:
+    initial_base_json = serialize_base(initial_base)
+    print(f"Initial base object as JSON:\n{version_root_object}")
 
     objects_with_forbidden_speckle_type = [
         b
