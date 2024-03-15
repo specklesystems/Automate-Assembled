@@ -62,8 +62,8 @@ def automate_function(
     version_root_object = automate_context.receive_version()
 
     # At the point in your code where you want to log the initial base object:
-    initial_base_json = serialize_base(initial_base)
-    print(f"Initial base object as JSON:\n{version_root_object}")
+    initial_base_json = serialize_base(version_root_object)
+    print(f"Initial base object as JSON:\n{initial_base_json}")
 
     objects_with_forbidden_speckle_type = [
         b
